@@ -1,0 +1,16 @@
+{
+  "name": "dcbot",
+  "version": "1.0.0",
+  "description": "test bot",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daantje",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.4.1",
+    "ffmpeg-binaries": "^4.0.0",
+    "node-opus": "^0.3.3"
+  }
+}
