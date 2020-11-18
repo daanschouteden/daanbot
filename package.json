@@ -1,6 +1,9 @@
 {
   "name": "dcbot",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.19.0"
+  },
   "description": "test bot",
   "main": "main.js",
   "scripts": {
