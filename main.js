@@ -92,10 +92,24 @@ client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {
             })
         }
     }
-    // The member disconnected
+        // The member disconnected
     else if (oldChannel && newChannel === null) {
         if (oldVoiceState.member.user.id === bots.get('Bottons')) {
-            Bottons_active = false
+            if (oldVoiceState.channel.members.size >= 1) {
+                console.log("Bottons has to stay")
+                oldChannel.join().then(connection => {
+                    // Activate Bottons
+                    const channel = client.channels.cache.get(daanbot_channel);
+                    channel.send('.join').then( msg => {
+                        msg.delete({ timeout: 500});
+                    }).then( () => {
+                        oldChannel.leave()
+                    })
+                })
+            }
+            else {
+                Bottons_active = false
+            }
         }
         console.log(`${oldVoiceState.member.user.tag} disconnected from ${oldChannel.name}.`);
 
