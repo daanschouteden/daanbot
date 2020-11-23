@@ -26,6 +26,9 @@ const bots = new Map ([
     ["Redditor", '557580985646972928']
 ])
 
+const tom_id = '111410966037573632'
+const daan_id = '198724528606674944'
+
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('js'));
 for (const file of commandFiles) {
@@ -85,10 +88,17 @@ client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {
                         msg.delete({ timeout: 500});
                     });
                 }
-                const player = connection.play('./hallo.mp3');
-                player.on('finish', end => {
-                    newChannel.leave();
-                });
+                let audiofile = ""
+                if (newVoiceState.member.id == tom_id) {
+                    audiofile = './weg_sfeer.mp3'
+                }
+                else {
+                    audiofile = './hallo.mp3'
+                }
+                const player = connection.play(audiofile);
+                    player.on('finish', end => {
+                        newChannel.leave();
+                    });
             })
         }
     }
