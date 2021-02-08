@@ -27,6 +27,8 @@ const bots = new Map ([
 ])
 
 const tom_id = '111410966037573632'
+const wouter_id = '237207052550799360'
+const ludo_id = '239136238718681089'
 const daan_id = '198724528606674944'
 
 
@@ -89,12 +91,21 @@ client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {
                     });
                 }
                 let audiofile = ""
-                if (newVoiceState.member.id == tom_id) {
-                    audiofile = './weg_sfeer.mp3'
+
+                switch(newVoiceState.member.id) {
+                    case tom_id:
+                        audiofile = './weg_sfeer.mp3'
+                        break;
+                    case wouter_id:
+                        audiofile = './Wouter-Bezeikt.mp3'
+                        break;
+                    case ludo_id:
+                        audiofile = './Vermijl-marnick.mp3'
+                        break;
+                    default:
+                        audiofile = './hallo.mp3'
                 }
-                else {
-                    audiofile = './hallo.mp3'
-                }
+
                 const player = connection.play(audiofile);
                     player.on('finish', end => {
                         newChannel.leave();
@@ -102,7 +113,7 @@ client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {
             })
         }
     }
-        // The member disconnected
+    // The member disconnected
     else if (oldChannel && newChannel === null) {
         if (oldVoiceState.member.user.id === bots.get('Bottons')) {
             if (oldVoiceState.channel.members.size >= 1) {
