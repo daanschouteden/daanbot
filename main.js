@@ -26,10 +26,15 @@ const bots = new Map ([
     ["Redditor", '557580985646972928']
 ])
 
-const tom_id = '111410966037573632'
-const wouter_id = '237207052550799360'
-const ludo_id = '239136238718681089'
-const daan_id = '198724528606674944'
+const members = new Map ([
+    ["tom", '111410966037573632'],
+    ["wouter", '237207052550799360'],
+    ["ludo", '239136238718681089'],
+    ["daan", '198724528606674944'],
+    ["lotte1", '703664222814339122'],
+    ["lotte2", '771858071869194281'],
+    ["sven", '183235915106353152']
+])
 
 const channels = new Map ([
     ["leutig", '774630085814255626'],
@@ -102,17 +107,24 @@ client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {
                 let audiofile = ""
 
                 switch(newVoiceState.member.id) {
-                    case tom_id:
-                        audiofile = './weg_sfeer.mp3'
+                    case members.get('tom'):
+                        audiofile = './sounds/weg_sfeer.mp3'
                         break;
-                    case wouter_id:
-                        audiofile = './Wouter-Bezeikt.mp3'
+                    case members.get('wouter'):
+                        audiofile = './sounds/Wouter-Bezeikt.mp3'
                         break;
-                    case ludo_id:
-                        audiofile = './Vermijl-marnick.mp3'
+                    case members.get('ludo'):
+                        audiofile = './sounds/Vermijl-marnick.mp3'
+                        break;
+                    case members.get('lotte1'):
+                    case members.get('lotte2'):
+                        audiofile = './sounds/Wouter-Jipla.mp3'
+                        break;
+                    case members.get('sven'):
+                        audiofile = './sounds/Sven-Lekker_pik.mp3'
                         break;
                     default:
-                        audiofile = './hallo.mp3'
+                        audiofile = './sounds/hallo.mp3'
                 }
 
                 const player = connection.play(audiofile);
