@@ -31,6 +31,10 @@ const wouter_id = '237207052550799360'
 const ludo_id = '239136238718681089'
 const daan_id = '198724528606674944'
 
+const channels = new Map ([
+    ["leutig", '774630085814255626'],
+    ["daanbot", '777976029992976414']
+])
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('js'));
 for (const file of commandFiles) {
@@ -45,8 +49,12 @@ client.once('ready', () => {
 
 
 client.on('message', async message =>{
-    return
-    // Als het niet met de prefix start of als de bot het zelf heeft gestuurd
+    
+    if (message.channel.id === channels.get('leutig')) {
+        message.react('😂');
+    }
+
+    /* Als het niet met de prefix start of als de bot het zelf heeft gestuurd
     if(!message.content.startsWith(prefix) || message.author.bot) return;
 
     const args = message.content.slice(prefix.length).split(/ +/);
@@ -60,6 +68,7 @@ client.on('message', async message =>{
         resp = await summoner(command)
         message.channel.send(resp);
     }
+    */
 })
 
 client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {  
