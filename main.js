@@ -107,6 +107,9 @@ client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {
                 let audiofile = ""
 
                 switch(newVoiceState.member.id) {
+                    case members.get('daan'):
+                        audiofile = './sounds/Hans_Teeuwen-Ik_heb_talent.mp3'
+                        break;
                     case members.get('tom'):
                         audiofile = './sounds/weg_sfeer.mp3'
                         break;
