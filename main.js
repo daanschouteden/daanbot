@@ -60,6 +60,21 @@ client.on('message', async message =>{
         message.react('😂');
     }
 
+    if (message.content === "W") {
+        authorVoicechannel = message.member.voice;
+        if (authorVoicechannel.channelID) {
+            authorVoicechannel.channel.join().then(connection => {
+
+                let audiofile = "./sounds/Tyler - Winnable.mp3";
+
+                const player = connection.play(audiofile);
+                player.on('finish', end => {
+                    authorVoicechannel.channel.leave();
+                });
+            })
+        }
+    }
+
     /* Als het niet met de prefix start of als de bot het zelf heeft gestuurd
     if(!message.content.startsWith(prefix) || message.author.bot) return;
 
