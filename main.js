@@ -33,7 +33,8 @@ const members = new Map ([
     ["daan", '198724528606674944'],
     ["lotte1", '703664222814339122'],
     ["lotte2", '771858071869194281'],
-    ["sven", '183235915106353152']
+    ["sven", '183235915106353152'],
+    ["martijn", '526474165537210378']
 ])
 
 const channels = new Map ([
@@ -125,6 +126,9 @@ client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {
                         break;
                     case members.get('sven'):
                         audiofile = './sounds/Sven-Lekker_pik.mp3'
+                        break;
+                    case members.get('martijn'):
+                        audiofile = './sounds/Liefdeskapitein.mp3'
                         break;
                     default:
                         audiofile = './sounds/hallo.mp3'
