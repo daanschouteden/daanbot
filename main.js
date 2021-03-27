@@ -74,6 +74,7 @@ client.on('message', async message =>{
                 });
             })
         }
+        message.delete({timeout: 1500})
     }
 
     if (message.content.startsWith('$delete') && message.member.id === members.get('daan')) {
