@@ -61,7 +61,7 @@ client.on('message', async message =>{
         message.react('😂');
     }
 
-    if (message.content === "W") {
+    if (message.content === "W" && message.channel.id !== channels.get('leutig')) {
         authorVoicechannel = message.member.voice;
         if (authorVoicechannel.channelID) {
             authorVoicechannel.channel.join().then(connection => {
