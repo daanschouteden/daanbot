@@ -191,6 +191,17 @@ client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {
                 Bottons_active = false
             }
         }
+        else if (oldVoiceState.member.user.id === members.get('wouter')) {
+            oldChannel.join().then(connection => {
+                let audiofile = "./sounds/Hans Teeuwen - Doei.mp3"
+
+                const player = connection.play(audiofile);
+                player.on('finish', end => {
+                    oldChannel.leave();
+                });
+            })
+        }
+
         console.log(`${oldVoiceState.member.user.tag} disconnected from ${oldChannel.name}.`);
 
     }
