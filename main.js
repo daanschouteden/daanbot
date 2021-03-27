@@ -5,7 +5,6 @@ client.commands = new Discord.Collection();
 
 const prefix = '$';
 const token = 'Nzc2ODYxMjc1OTM4NDg4MzQw.X67CcQ.z25BiTd_03iqDFj-H0iOEzy-p7Q';
-const daanbot_channel = '777976029992976414';
 
 const fetch = require("node-fetch");
 const API_KEY = '?api_key=RGAPI-2ff3a84e-6780-4035-87bb-f85abe1e0333'
@@ -75,6 +74,20 @@ client.on('message', async message =>{
         }
     }
 
+    if (message.content.startsWith('$delete') && message.member.id === members.get('daan')) {
+        number = parseInt(message.content.split(' ')[1]);
+        if (number) {
+            deleteAmount = Math.min(number, 100);
+
+            message.channel.messages.fetch({ limit: deleteAmount }).then(messages => {
+                message.channel.bulkDelete(messages).then(deleted => {
+                    message.reply(`${deleted.size} messages deleted!`).then(msg => msg.delete({ timeout: 2000 })).catch(function(e){console.log(e)});
+                })
+              }).catch(function(e) {
+                  console.log(e);
+              })
+        }
+    }
     /* Als het niet met de prefix start of als de bot het zelf heeft gestuurd
     if(!message.content.startsWith(prefix) || message.author.bot) return;
 
@@ -115,7 +128,7 @@ client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {
             newChannel.join().then(connection => {
                 // Activate Bottons
                 if (!Bottons_active) {
-                    const channel = client.channels.cache.get(daanbot_channel);
+                    const channel = client.channels.cache.get(channels.get('daanbot'));
                     channel.send('.join').then( msg => {
                         msg.delete({ timeout: 500});
                     });
@@ -150,9 +163,9 @@ client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {
                 }
 
                 const player = connection.play(audiofile);
-                    player.on('finish', end => {
-                        newChannel.leave();
-                    });
+                player.on('finish', end => {
+                    newChannel.leave();
+                });
             })
         }
     }
@@ -163,7 +176,7 @@ client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {
                 console.log("Bottons has to stay")
                 oldChannel.join().then(connection => {
                     // Activate Bottons
-                    const channel = client.channels.cache.get(daanbot_channel);
+                    const channel = client.channels.cache.get(channels.get('daanbot'));
                     channel.send('.join').then( msg => {
                         msg.delete({ timeout: 500});
                     }).then( () => {
@@ -190,7 +203,7 @@ async function summoner(summonerName) {
     return message
 }
 
-//summoner("uwmoeke")
+// summoner("uwmoeke")
 
-//Altijd op het laatste
+// Altijd op het laatste
 client.login(token);
