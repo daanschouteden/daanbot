@@ -191,7 +191,9 @@ client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {
                 Bottons_active = false
             }
         }
-        else if (oldVoiceState.member.user.id === members.get('wouter')) {
+        else if (oldVoiceState.member.user.id === members.get('wouter') ||
+                oldVoiceState.member.user.id === members.get('lotte1') ||
+                oldVoiceState.member.user.id === members.get('lotte2')) {
             oldChannel.join().then(connection => {
                 let audiofile = "./sounds/Hans Teeuwen - Doei.mp3"
 
