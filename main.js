@@ -158,7 +158,7 @@ client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {
                 let audiofile = ""
 
                 switch(newVoiceState.member.id) {
-                    default: // Effe voor de verandering
+                    case true: // Effe voor de verandering
                         var welcome_sound = welcome_sounds[Math.floor(Math.random()*welcome_sounds.length)];
                         console.log("Playing welcome sound: " + welcome_sound)
                         audiofile = './sounds/' + welcome_sound + '.mp3'
