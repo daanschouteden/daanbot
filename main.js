@@ -1,9 +1,13 @@
 const Discord = require('discord.js');
+require("dotenv").config();
+import 'dotenv/config'
+import express from 'express'
+
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
 const prefix = '$';
-const token = 'Nzc2ODYxMjc1OTM4NDg4MzQw.X67CcQ.z25BiTd_03iqDFj-H0iOEzy-p7Q';
+const token = process.env.DISCORD_TOKEN;
 
 const fetch = require("node-fetch");
 const API_KEY = '?api_key=RGAPI-2ff3a84e-6780-4035-87bb-f85abe1e0333'
