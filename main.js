@@ -42,10 +42,22 @@ const channels = new Map ([
     ["daanbot", '777976029992976414']
 ])
 
-const welcome_sounds = new Array ([
+const welcome_sounds = [
+    "ara_ara",
+    "Ge_zijt_nen_flipflop",
+    "Hallo_gast",
+    "Hallo_met_Gert_en_Samson",
     "hallo",
     "Hey Marco Prima",
-])
+    "Ingeborg - Fuck you",
+    "Ingeborg - Helemaal back",
+    "Nggr",
+    "Nu_ben_ik_een_nggr",
+    "Piet Huysentruyt - Dat is em se",
+    "Piet Huysentruyt - Knap door den drank",
+    "Pussay",
+    "Rita-Wie_denkt_gij_dat_ge_zijt",
+]
 
 /*
 const fs = require('fs');
@@ -171,6 +183,7 @@ client.on('voiceStateUpdate', async (oldVoiceState, newVoiceState) => {
                         break;
                     default:
                         var welcome_sound = welcome_sounds[Math.floor(Math.random()*welcome_sounds.length)];
+                        console.log("Playing welcome sound: " + welcome_sound)
                         audiofile = './sounds/' + welcome_sound + '.mp3'
                 }
 
